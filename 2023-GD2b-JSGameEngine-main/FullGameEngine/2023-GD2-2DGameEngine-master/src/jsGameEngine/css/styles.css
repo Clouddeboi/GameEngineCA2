@@ -1,0 +1,14 @@
+/* Set margin, flex properties, height, and background color for the body */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ff0000; /* Red background color */
+}
+
+/* Add border to the canvas element */
+canvas {
+    border: 1px solid #fff; /* 1 pixel solid white border */
+}
