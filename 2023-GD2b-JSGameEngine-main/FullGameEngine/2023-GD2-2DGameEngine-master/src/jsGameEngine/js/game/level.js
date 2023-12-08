@@ -26,29 +26,32 @@ class Level extends Game {
 
     // Define the platform's width and the gap between platforms
     const platformWidth = 200;
+    const floorWidth = 5000;
     const gap = 100;
 
     // Create platforms and add them to the game
     const platforms = [
-      new Platform(0, this.canvas.height - 20, platformWidth, 20),
-      new Platform(platformWidth + gap, this.canvas.height - 20, platformWidth, 20),
+      new Platform(0, this.canvas.height - 900, platformWidth, 5000),
+      new Platform(platformWidth, this.canvas.height - -200, floorWidth, 1000),
       new Platform(2 * (platformWidth + gap), this.canvas.height - 20, platformWidth, 20),
       new Platform(3 * (platformWidth + gap), this.canvas.height - 20, platformWidth, 20),
       new Platform(4 * (platformWidth + gap), this.canvas.height - 20, platformWidth, 20),
+      new Platform(4 * (platformWidth + gap), this.canvas.height - 250, platformWidth, 20),
+      new Platform(5 * (platformWidth + gap), this.canvas.height - 900, platformWidth, 5000),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);
     }
 
     // Create enemies and add them to the game
-    this.addGameObject(new Enemy(50, this.canvas.height - 90));
-    this.addGameObject(new Enemy(platformWidth + gap + 50, this.canvas.height - 90));
-    this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 90));
+    // this.addGameObject(new Enemy(50, this.canvas.height - 90));
+    // this.addGameObject(new Enemy(platformWidth + gap + 50, this.canvas.height - 90));
+    // this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 90));
 
     // Create collectibles and add them to the game
-    this.addGameObject(new Collectible(250, this.canvas.height - 100, 20, 20));
-    this.addGameObject(new Collectible(450, this.canvas.height - 100, 20, 20));
     this.addGameObject(new Collectible(650, this.canvas.height - 100, 20, 20));
+    this.addGameObject(new Collectible(750, this.canvas.height - 100, 20, 20));
+    this.addGameObject(new Collectible(800, this.canvas.height - 100, 20, 20));
   }
   
 }
