@@ -33,7 +33,7 @@ class Collectible extends GameObject {
     this.tag = 'collectible';
 
     // Set the 'value' property of this collectible. This could be used to score points when the collectible is collected.
-    this.value = 1;
+    this.value = 100;
   }
 }
 

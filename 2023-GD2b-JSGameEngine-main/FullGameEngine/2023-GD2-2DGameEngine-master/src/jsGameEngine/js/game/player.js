@@ -24,12 +24,13 @@ class Player extends GameObject {
     this.score = 0;
     this.isOnPlatform = false;
     this.isJumping = false;
-    this.jumpForce = 600;
+    this.jumpForce = 5;
     this.jumpTime = 0.2;
     this.jumpTimer = 0;
     this.isInvulnerable = false;
     this.isGamepadMovement = false;
     this.isGamepadJump = false;
+    this.PlayerSpeed = 7;//helps us manage players speed better
   }
 
   // The update function runs every frame and contains game logic
@@ -41,17 +42,17 @@ class Player extends GameObject {
     
     // Handle player movement
     if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
-      physics.velocity.x = 300;
+      physics.velocity.x = this.PlayerSpeed;
       this.direction = -1;
     } else if (!this.isGamepadMovement && input.isKeyDown('ArrowLeft')) {
-      physics.velocity.x = -300;
+      physics.velocity.x = -this.PlayerSpeed;
       this.direction = 1;
     } else if (!this.isGamepadMovement) {
       physics.velocity.x = 0;
     }
 
     // Handle player jumping
-    if (!this.isGamepadJump && input.isKeyDown('ArrowUp') && this.isOnPlatform) {
+    if (!this.isGamepadJump && input.isKeyDown('ArrowUp')) {
       this.startJump();
     }
 
@@ -77,18 +78,17 @@ class Player extends GameObject {
     }
   
     // Handle collisions with platforms
-    this.isOnPlatform = false;  // Reset this before checking collisions with platforms
-    const platforms = this.game.gameObjects.filter((obj) => obj instanceof Platform);
-    for (const platform of platforms) {
-      if (physics.isColliding(platform.getComponent(Physics))) {
-        if (!this.isJumping) {
-          physics.velocity.y = 0;
-          physics.acceleration.y = 0;
-          this.y = platform.y - this.renderer.height;
-          this.isOnPlatform = true;
-        }
-      }
-    }
+    // this.isOnPlatform = false;  // Reset this before checking collisions with platforms
+    // for (const platform of platforms) {
+    //   if (physics.isColliding(platform.getComponent(Physics))) {
+    //     if (!this.isJumping) {
+    //       physics.velocity.y = 0;
+    //       physics.acceleration.y = 0;
+    //       this.y = platform.y - this.renderer.height;
+    //       this.isOnPlatform = true;
+    //     }
+    //   }
+    // }
   
     // Check if player has fallen off the bottom of the screen
     if (this.y > this.game.canvas.height) {
@@ -101,7 +101,7 @@ class Player extends GameObject {
     }
 
     // Check if player has collected all collectibles
-    if (this.score >= 3) {
+    if (this.score >= 300) {
       console.log('You win!');
       location.reload();
     }
@@ -137,8 +137,9 @@ class Player extends GameObject {
       }
       
       // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
-      if (input.isGamepadButtonDown(0) && this.isOnPlatform) {
+      if (input.isGamepadButtonDown(0)) {
         this.isGamepadJump = true;
+        console.log(this.getComponent(Physics).Grounded);
         this.startJump();
       }
     }
@@ -146,7 +147,7 @@ class Player extends GameObject {
 
   startJump() {
     // Initiate a jump if the player is on a platform
-    if (this.isOnPlatform) { 
+    if (this.getComponent(Physics).Grounded) { 
       this.isJumping = true;
       this.jumpTimer = this.jumpTime;
       this.getComponent(Physics).velocity.y = -this.jumpForce;
