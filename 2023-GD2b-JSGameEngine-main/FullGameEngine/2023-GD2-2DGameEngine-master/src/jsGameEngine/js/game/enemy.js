@@ -32,8 +32,9 @@ class Enemy extends GameObject {
     
     // Initialize variables related to enemy's movement
     this.movementDistance = 0;
-    this.movementLimit = 100;
+    this.movementLimit = 10;
     this.movingRight = true;
+    this.enemySpeed = 5;
   }
 
   // Define an update method that will run every frame of the game. It takes deltaTime as an argument
@@ -46,7 +47,7 @@ class Enemy extends GameObject {
     if (this.movingRight) {
       // If it hasn't reached its movement limit, make it move right
       if (this.movementDistance < this.movementLimit) {
-        physics.velocity.x = 50;
+        physics.velocity.x = this.enemySpeed;
         this.movementDistance += Math.abs(physics.velocity.x) * deltaTime;
         this.getComponent(Renderer).gameObject.direction = 1;
       } else {
@@ -57,7 +58,7 @@ class Enemy extends GameObject {
     } else {
       // If it hasn't reached its movement limit, make it move left
       if (this.movementDistance < this.movementLimit) {
-        physics.velocity.x = -50;
+        physics.velocity.x = -this.enemySpeed;
         this.movementDistance += Math.abs(physics.velocity.x) * deltaTime;
         this.getComponent(Renderer).gameObject.direction = -1;
       } else {

@@ -96,8 +96,9 @@ class Player extends GameObject {
     }
 
     // Check if player has no lives left
-    if (this.lives <= 0) {
-      location.reload();
+    if (this.lives == 1) 
+    {
+      location.reload();//reloads us to the start if our lives equal 0
     }
 
     // Check if player has collected all collectibles
