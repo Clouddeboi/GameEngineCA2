@@ -26,7 +26,7 @@ class Level extends Game {
 
     // Define the platform's width and the gap between platforms
     const platformWidth = 200;
-    const floorWidth = 5000;
+    //const floorWidth = 5000;
     const gap = 100;
 
     // Create platforms and add them to the game
@@ -36,7 +36,8 @@ class Level extends Game {
     Ground+Walls: "rgb(13, 16, 27)"
      */
     const platforms = [
-      new Platform(650, 650, 650, 650, "rgb(13, 16, 27)", "platform"),
+      new Platform(0, 800, 5000, 5000, "rgb(13, 16, 27)", "platform"),
+      //new Platform(650, 650, 650, 650, "rgb(13, 16, 27)", "platform"),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);

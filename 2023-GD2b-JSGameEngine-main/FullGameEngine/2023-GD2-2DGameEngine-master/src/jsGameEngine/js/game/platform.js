@@ -6,7 +6,11 @@ import Physics from '../engine/physics.js';
 // Define a new class, Platform, which extends (inherits from) GameObject
 class Platform extends GameObject 
 {
-  constructor(x, y, width, height, color = 'white', tag = "platform") 
+  /* 
+  this constructor is used to create a platform
+  it takes 5 arguments: x and y coordinates, width and height of the platform, and the color of the platform
+  */
+  constructor(x, y, width, height, color = 'white', tag = "platform")
   {
     super(x, y);
     

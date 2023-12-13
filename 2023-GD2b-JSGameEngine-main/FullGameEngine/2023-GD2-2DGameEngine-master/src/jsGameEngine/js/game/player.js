@@ -96,8 +96,9 @@ class Player extends GameObject {
     }
 
     // Check if player has no lives left
-    if (this.lives == 1) 
+    if (this.lives == 0) 
     {
+      console.log('You lose!');
       location.reload();//reloads us to the start if our lives equal 0
     }
 
@@ -140,7 +141,7 @@ class Player extends GameObject {
       // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
       if (input.isGamepadButtonDown(0)) {
         this.isGamepadJump = true;
-        //console.log(this.getComponent(Physics).Grounded);
+        console.log(this.getComponent(Physics).Grounded);
         this.startJump();
       }
     }

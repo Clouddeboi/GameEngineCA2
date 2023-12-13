@@ -15,14 +15,17 @@ class Camera {
     this.x = 0;
     // The y-coordinate of the camera's position, initialized to 0.
     this.y = 0;
+    //New Camera Properties for offsetting the camera 
+    this.offsetX = 100;//offset the camera by 100 pixels on the x axis
+    this.offsetY = 0;//offset the camera by 0 pixels on the y axis
   }
 
   // The update method adjusts the camera's position to center on the target object. It's called typically in the game's update loop.
   update() {
     // The x-coordinate of the camera is set to the target's x-coordinate, plus half of the target's width (which centers the camera on the target), and then minus half of the camera's width (which adjusts for the camera's size).
-    this.x = this.target.x + this.target.getComponent(Renderer).width / 2 - this.width / 2;
+    this.x = this.target.x + this.target.getComponent(Renderer).width / 2 - this.width / 2 + this.offsetX;
     // The y-coordinate of the camera is set in the same way, but with the target's and camera's heights instead of their widths.
-    this.y = this.target.y + this.target.getComponent(Renderer).height / 2 - this.height / 2;
+    this.y = this.target.y + this.target.getComponent(Renderer).height / 2 - this.height / 2 + this.offsetY;
   }
 }
 
