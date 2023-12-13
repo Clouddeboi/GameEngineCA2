@@ -140,7 +140,7 @@ class Player extends GameObject {
       // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
       if (input.isGamepadButtonDown(0)) {
         this.isGamepadJump = true;
-        console.log(this.getComponent(Physics).Grounded);
+        //console.log(this.getComponent(Physics).Grounded);
         this.startJump();
       }
     }

@@ -23,8 +23,10 @@ class Physics extends Component {
     // this.gameObject.x += this.velocity.x * deltaTime;
     // this.gameObject.y += this.velocity.y * deltaTime;
 
+    
     const platforms = this.gameObject.game.gameObjects.filter((obj) => obj instanceof Platform);
 
+    //set grounded variable to false
     this.Grounded = false;
     for(let i=0; i<Math.abs(this.velocity.y); i++)
     {
@@ -49,16 +51,17 @@ class Physics extends Component {
       }
     }
 
-    for(let i=0; i<Math.abs(this.velocity.x); i++){
-      this.gameObject.x+=Math.sign(this.velocity.x);
-      //this.gameObject.y--;
-      for(const obj of platforms){
-           if(obj.getComponent(Physics).isColliding(this)){
+    for(let i=0; i<Math.abs(this.velocity.x); i++)
+    {
+      this.gameObject.x+=Math.sign(this.velocity.x);//if the number is a minus return minus same for plus and 0
+      for(const obj of platforms)
+      {
+        if(obj.getComponent(Physics).isColliding(this))
+        {
             this.gameObject.x-=Math.sign(this.velocity.x);
             this.velocity.x = 0;
-           }
         }
-      //this.gameObject.y++;
+      }
     }
   }
 
