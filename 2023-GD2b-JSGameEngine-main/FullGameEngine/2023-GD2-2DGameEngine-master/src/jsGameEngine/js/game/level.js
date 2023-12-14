@@ -31,13 +31,15 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     /*
+    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform")
     RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
     Colour Pallete Used: https://lospec.com/palette-list/sunset-red
     Ground+Walls: "rgb(13, 16, 27)"
      */
     const platforms = [
-      new Platform(0, 800, 5000, 5000, "rgb(13, 16, 27)", "platform"),
-      //new Platform(650, 650, 650, 650, "rgb(13, 16, 27)", "platform"),
+      new Platform(0, 800, 5000, 5000, "rgb(13, 16, 27)", "platform", 0),
+      new Platform(650, 650, 100, 200, "rgb(13, 16, 27)", "platform", 8),
+      new Platform(650, 650, 100, 200, "rgb(13, 16, 27)", "platform", 0),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);

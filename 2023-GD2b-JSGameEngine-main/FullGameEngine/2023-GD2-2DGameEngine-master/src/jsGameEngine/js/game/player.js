@@ -76,19 +76,16 @@ class Player extends GameObject {
         this.collidedWithEnemy();
       }
     }
-  
-    // Handle collisions with platforms
-    // this.isOnPlatform = false;  // Reset this before checking collisions with platforms
-    // for (const platform of platforms) {
-    //   if (physics.isColliding(platform.getComponent(Physics))) {
-    //     if (!this.isJumping) {
-    //       physics.velocity.y = 0;
-    //       physics.acceleration.y = 0;
-    //       this.y = platform.y - this.renderer.height;
-    //       this.isOnPlatform = true;
-    //     }
+
+    // Handle collisions with Bounce Platforms
+    // for (const platform of platforms) 
+    // {
+    //   if (physics.isColliding(platform.getComponent(Physics))) 
+    //   {
+    //       player.velocity.y += platform.BounceAmount;
     //   }
     // }
+    
   
     // Check if player has fallen off the bottom of the screen
     if (this.y > this.game.canvas.height) {

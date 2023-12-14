@@ -18,14 +18,9 @@ class Physics extends Component {
     // Update velocity based on acceleration and gravity.
     this.velocity.x += this.acceleration.x * deltaTime;
     this.velocity.y += (this.acceleration.y + this.gravity.y) * deltaTime;
-    
-    // Move the game object based on the velocity.
-    // this.gameObject.x += this.velocity.x * deltaTime;
-    // this.gameObject.y += this.velocity.y * deltaTime;
-
-    
+  
     const platforms = this.gameObject.game.gameObjects.filter((obj) => obj instanceof Platform);
-
+  
     //set grounded variable to false
     this.Grounded = false;
     for(let i=0; i<Math.abs(this.velocity.y); i++)
@@ -46,17 +41,23 @@ class Physics extends Component {
             this.gameObject.y -= 1;
             this.Grounded = true;
             this.velocity.y = 0;
+  
+            // Add bounce effect
+            if(obj.BounceAmount > 0)
+            {
+              this.velocity.y = -obj.BounceAmount;
+            }
           }
         }
       }
     }
-
-    for(let i=0; i<Math.abs(this.velocity.x); i++)
+  
+    for(let i=0; i<Math.abs(this.velocity.x); i++)//for loop to check if the player is colliding with the platform
     {
       this.gameObject.x+=Math.sign(this.velocity.x);//if the number is a minus return minus same for plus and 0
       for(const obj of platforms)
       {
-        if(obj.getComponent(Physics).isColliding(this))
+        if(obj.getComponent(Physics).isColliding(this))//if the object is colliding with the platform
         {
             this.gameObject.x-=Math.sign(this.velocity.x);
             this.velocity.x = 0;
