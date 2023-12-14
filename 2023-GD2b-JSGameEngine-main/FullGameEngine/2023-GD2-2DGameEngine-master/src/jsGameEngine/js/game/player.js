@@ -76,15 +76,6 @@ class Player extends GameObject {
         this.collidedWithEnemy();
       }
     }
-
-    // Handle collisions with Bounce Platforms
-    // for (const platform of platforms) 
-    // {
-    //   if (physics.isColliding(platform.getComponent(Physics))) 
-    //   {
-    //       player.velocity.y += platform.BounceAmount;
-    //   }
-    // }
     
   
     // Check if player has fallen off the bottom of the screen

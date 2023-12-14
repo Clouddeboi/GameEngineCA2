@@ -10,7 +10,7 @@ class Platform extends GameObject
   this constructor is used to create a platform
   it takes 5 arguments: x and y coordinates, width and height of the platform, and the color of the platform
   */
-  constructor(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0)
+  constructor(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0, Slippery = false, fallLeft = false, fallRight = false)
   {
     super(x, y);
     
@@ -19,8 +19,14 @@ class Platform extends GameObject
     this.addComponent(new Physics({ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }));
     
     this.tag = tag; 
-    
-    this.BounceAmount = BounceAmount;
+
+    //BouncePad
+    this.BounceAmount = BounceAmount;//if over 0 the platform will bounce the player
+
+    //Slippery Platform
+    this.Slippery = Slippery;//if true the platform will make the player slide
+    this.fallLeft = fallLeft;//if true the player will fall left
+    this.fallRight = fallRight;//if true the player will fall right
   }
 }
 // Export the Platform class as the default export of this module

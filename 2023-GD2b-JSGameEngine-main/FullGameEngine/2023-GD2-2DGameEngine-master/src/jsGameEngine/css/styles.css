@@ -5,11 +5,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /*background-color: #252323;*/
-    background-image:url(https://t3.ftcdn.net/jpg/02/97/45/54/360_F_297455425_lNivJ7rm7LPLuApu3jx36L02PeLllDxN.jpg);/*Makes the background an image instead of a solid color*/
+    background-color:#0000FF;
+    /*background-image:url(https://t3.ftcdn.net/jpg/02/97/45/54/360_F_297455425_lNivJ7rm7LPLuApu3jx36L02PeLllDxN.jpg);/*Makes the background an image instead of a solid color*/
 }
 
 /* Add border to the canvas element */
 canvas {
     border: 0.5px solid #373737; /* 1 pixel solid white border */
+    width: 99%;
+    height: 99%;
 }

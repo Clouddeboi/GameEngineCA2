@@ -47,6 +47,18 @@ class Physics extends Component {
             {
               this.velocity.y = -obj.BounceAmount;
             }
+
+            if(obj.Slippery)//if the platform is slippery
+            {
+              if(obj.fallLeft)//if the platform makes the player fall left
+              {
+                this.velocity.x += 10;//add 10 to the x velocity
+              }
+              else if(obj.fallRight)//if the platform makes the player fall right
+              {
+                this.velocity.x -= 10;//add -10 to the x velocity
+              }
+            }
           }
         }
       }

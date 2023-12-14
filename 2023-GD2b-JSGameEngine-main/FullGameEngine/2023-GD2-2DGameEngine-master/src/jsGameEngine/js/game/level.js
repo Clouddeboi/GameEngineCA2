@@ -31,15 +31,16 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     /*
-    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform")
+    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0)
     RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
-    Colour Pallete Used: https://lospec.com/palette-list/sunset-red
-    Ground+Walls: "rgb(13, 16, 27)"
+    Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
+    Ground+Walls: "rgb(0, 0, 126)"
+    Bounce Platform: "rgb(255, 255, 4)"
      */
     const platforms = [
-      new Platform(0, 800, 5000, 5000, "rgb(13, 16, 27)", "platform", 0),
-      new Platform(650, 650, 100, 200, "rgb(13, 16, 27)", "platform", 8),
-      new Platform(650, 650, 100, 200, "rgb(13, 16, 27)", "platform", 0),
+      new Platform(0, 800, 1000, 5000, "rgb(0, 0, 126)", "platform", 0, false),
+      new Platform(650, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
+      new Platform(650, 780, 500, 20, "rgb(255, 255, 4)", "platform", 0, true, true, false),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);
