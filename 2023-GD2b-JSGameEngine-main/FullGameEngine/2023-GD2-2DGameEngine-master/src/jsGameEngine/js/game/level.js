@@ -17,9 +17,6 @@ class Level extends Game {
     // Create a player object and add it to the game
     const player = new Player(this.canvas.width / 2 - 25, this.canvas.height / 2 - 25);
     this.addGameObject(player);
-    
-    // Add the player UI object to the game
-    this.addGameObject(new PlayerUI(10, 10));
 
     // Set the game's camera target to the player
     this.camera.target = player;
@@ -28,6 +25,7 @@ class Level extends Game {
     const platformWidth = 200;
     //const floorWidth = 5000;
     const gap = 100;
+
 
     // Create platforms and add them to the game
     /*
@@ -63,6 +61,9 @@ class Level extends Game {
     for (const platform of platforms) {
       this.addGameObject(platform);
     }
+
+    // Add the player UI object to the game
+    this.addGameObject(new PlayerUI(10, 10));
 
     //Create enemies and add them to the game
     this.addGameObject(new Enemy(50, this.canvas.height - 90));

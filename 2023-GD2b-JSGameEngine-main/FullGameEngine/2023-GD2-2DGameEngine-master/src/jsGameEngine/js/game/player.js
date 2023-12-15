@@ -33,10 +33,13 @@ class Player extends GameObject {
     this.isGamepadJump = false;
     this.PlayerSpeed = 5;//helps us manage players speed better
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
+    this.isPaused = false;
   }
 
   // The update function runs every frame and contains game logic
   update(deltaTime) {
+    if(!this.isPaused)//if the game is not paused
+    {
     const physics = this.getComponent(Physics); // Get physics component
     const input = this.getComponent(Input); // Get input component
 
@@ -86,11 +89,19 @@ class Player extends GameObject {
       this.resetPlayerState();
     }
 
+    // Create game over screen
+    let gameOverScreen = document.createElement('div');
+    gameOverScreen.id = 'game-over-screen';
+    gameOverScreen.style.display = 'none';
+    gameOverScreen.innerHTML = '<h1>Game Over</h1><button onclick="location.reload()">Play Again</button>';
+    document.body.appendChild(gameOverScreen);
+
     // Check if player has no lives left
     if (this.lives == 0) 
     {
+      this.isPaused = true;
       console.log('You lose!');
-      location.reload();//reloads us to the start if our lives equal 0
+      document.getElementById('game-over-screen').style.display = 'block';
     }
 
     // Check if player has collected all collectibles
@@ -100,6 +111,7 @@ class Player extends GameObject {
     }
 
     super.update(deltaTime);
+  }
   }
 
   handleGamepadInput(input){
