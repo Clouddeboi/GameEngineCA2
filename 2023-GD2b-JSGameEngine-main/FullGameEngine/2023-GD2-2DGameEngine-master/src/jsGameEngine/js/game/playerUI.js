@@ -10,15 +10,19 @@ class PlayerUI extends GameObject {
     // Create a new UI component with initial text and add it to this object's components.
     this.uiComponent = new UI('Lives: 3 Score: 0', x, y);
     this.addComponent(this.uiComponent);
+    
+    this.timer = 60;//sets the timer to 60 seconds
   }
 
   // The update method is called every frame.
   update(deltaTime) {
+
+    this.timer -= deltaTime;//decreases the timer by the amount of time that has passed
     // Find the player object in the game's gameObjects array.
     const player = this.game.gameObjects.find((obj) => obj instanceof Player);
 
-    // Update the text of the UI component to reflect the player's current lives and score.
-    this.uiComponent.setText(`Lives: ${player.lives} Score: ${player.score}`);
+    // Update the text of the UI component to reflect the player's current lives and score and timer.
+    this.uiComponent.setText(`Lives: ${player.lives} Score: ${player.score} Timer: ${Math.max(0, Math.floor(this.timer))}s`);
   }
 }
 
