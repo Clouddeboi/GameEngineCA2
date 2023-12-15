@@ -36,11 +36,29 @@ class Level extends Game {
     Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
     Ground+Walls: "rgb(0, 0, 126)"
     Bounce Platform: "rgb(255, 255, 4)"
+    Slippery Platform: "rgb(6, 255, 255)"
      */
     const platforms = [
-      new Platform(0, 800, 1000, 5000, "rgb(0, 0, 126)", "platform", 0, false),
-      new Platform(650, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
-      new Platform(650, 780, 500, 20, "rgb(255, 255, 4)", "platform", 0, true, true, false),
+      //Floor and Walls
+      new Platform(-800, 800, 6000, 6000, "rgb(0, 0, 126)", "platform", 0, false),//floor
+      new Platform(-800, -1000, 1000, 5000, "rgb(0, 0, 126)", "platform", 0, false),//left wall
+      new Platform(1980, -1000, 2000, 5000, "rgb(0, 0, 126)", "platform", 0, false),//right wall
+
+      //Platforms
+      new Platform(500, 300, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
+      new Platform(800, 150, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
+      new Platform(500, -700, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
+      new Platform(1200, -400, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
+      new Platform(900, -550, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
+
+      //Jumping Platforms
+      new Platform(300, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
+      new Platform(1900, -50, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
+
+      //Slippy Platforms
+      new Platform(1200, 0, 500, 20, "rgb(6, 255, 255)", "platform", 0, true, true, false),
+
+
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);
