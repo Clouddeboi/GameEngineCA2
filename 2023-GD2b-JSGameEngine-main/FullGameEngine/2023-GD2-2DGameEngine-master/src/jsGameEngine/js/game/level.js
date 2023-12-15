@@ -31,7 +31,7 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     /*
-    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0)
+    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0, fallLeft = false, fallRight = false)
     RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
     Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
     Ground+Walls: "rgb(0, 0, 126)"
@@ -52,8 +52,8 @@ class Level extends Game {
       new Platform(900, -550, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
 
       //Jumping Platforms
-      new Platform(300, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
-      new Platform(1900, -50, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
+      new Platform(300, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8),
+      new Platform(1900, -50, 80, 20, "rgb(255, 255, 4)", "platform", 8),
 
       //Slippy Platforms
       new Platform(1200, 0, 500, 20, "rgb(6, 255, 255)", "platform", 0, true, true, false),

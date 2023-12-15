@@ -2,6 +2,7 @@
 import Platform from '../game/platform.js';
 import Component from './component.js';
 import Renderer from './renderer.js';
+import { AudioFiles } from '../engine/resources.js';
 
 // The Physics class extends Component and handles the physics behavior of a game object.
 class Physics extends Component {
@@ -11,8 +12,8 @@ class Physics extends Component {
     this.velocity = velocity; // Initialize the velocity.
     this.acceleration = acceleration; // Initialize the acceleration.
     this.gravity = gravity; // Initialize the gravity.
-    this.JumpPadSFX = new Audio('resources/Audio/JumpPad.mp3');
-    this.SlipperySFX = new Audio('resources/Audio/SlipperySurface.mp3');
+    this.JumpPadSFX = AudioFiles.jumpPad;
+    this.SlipperySFX = AudioFiles.Slippery;
   }
 
   // The update method handles how the component's state changes over time.

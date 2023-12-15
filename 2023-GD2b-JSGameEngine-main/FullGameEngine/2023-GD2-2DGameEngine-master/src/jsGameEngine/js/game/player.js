@@ -4,6 +4,7 @@ import Renderer from '../engine/renderer.js';
 import Physics from '../engine/physics.js';
 import Input from '../engine/input.js';
 import { Images } from '../engine/resources.js';
+import { AudioFiles } from '../engine/resources.js';
 import Enemy from './enemy.js';
 import Platform from './platform.js';
 import Collectible from './collectible.js';
@@ -31,7 +32,7 @@ class Player extends GameObject {
     this.isGamepadMovement = false;
     this.isGamepadJump = false;
     this.PlayerSpeed = 5;//helps us manage players speed better
-    this.JumpSFX = new Audio('resources/Audio/PlayerJump.mp3');//creates a new audio object
+    this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
   }
 
   // The update function runs every frame and contains game logic
@@ -54,8 +55,8 @@ class Player extends GameObject {
 
     // Handle player jumping
     if (!this.isGamepadJump && input.isKeyDown('ArrowUp')) {
-      this.JumpSFX.play();//plays the jump sound effect
       this.startJump();
+      this.JumpSFX.play();//plays the jump sound effect
     }
 
     if (this.isJumping) {
