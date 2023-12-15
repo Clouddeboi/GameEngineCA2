@@ -24,13 +24,14 @@ class Player extends GameObject {
     this.score = 0;
     this.isOnPlatform = false;
     this.isJumping = false;
-    this.jumpForce = 5;
+    this.jumpForce = 5.5;
     this.jumpTime = 0.2;
     this.jumpTimer = 0;
     this.isInvulnerable = false;
     this.isGamepadMovement = false;
     this.isGamepadJump = false;
-    this.PlayerSpeed = 7;//helps us manage players speed better
+    this.PlayerSpeed = 5;//helps us manage players speed better
+    this.JumpSFX = new Audio('resources/Audio/PlayerJump.mp3');//creates a new audio object
   }
 
   // The update function runs every frame and contains game logic
@@ -53,6 +54,7 @@ class Player extends GameObject {
 
     // Handle player jumping
     if (!this.isGamepadJump && input.isKeyDown('ArrowUp')) {
+      this.JumpSFX.play();//plays the jump sound effect
       this.startJump();
     }
 

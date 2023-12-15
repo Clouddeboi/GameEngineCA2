@@ -11,6 +11,8 @@ class Physics extends Component {
     this.velocity = velocity; // Initialize the velocity.
     this.acceleration = acceleration; // Initialize the acceleration.
     this.gravity = gravity; // Initialize the gravity.
+    this.JumpPadSFX = new Audio('resources/Audio/JumpPad.mp3');
+    this.SlipperySFX = new Audio('resources/Audio/SlipperySurface.mp3');
   }
 
   // The update method handles how the component's state changes over time.
@@ -59,6 +61,14 @@ class Physics extends Component {
                 this.velocity.x -= 10;//add -10 to the x velocity
               }
             }
+          }
+          if(obj.BounceAmount>0)
+          {
+            this.JumpPadSFX.play();//plays the jump pad sound effect
+          }
+          if(obj.Slippery)
+          {
+            this.SlipperySFX.play();//plays the slippery surface sound effect
           }
         }
       }
