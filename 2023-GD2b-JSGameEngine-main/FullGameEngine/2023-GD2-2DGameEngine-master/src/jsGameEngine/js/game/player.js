@@ -34,10 +34,12 @@ class Player extends GameObject {
     this.isGamepadJump = false;
     this.PlayerSpeed = 5;//helps us manage players speed better
 
+    //SFX
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
-    this.CollectbleSFX = AudioFiles.Collect;
-    
-    this.isPaused = false;
+    this.CollectbleSFX = AudioFiles.Collect;//adds the collect sound effect
+    this.GamerOverSFX = AudioFiles.GameOver;//adds the game over sound effect
+
+    this.isPaused = false;//sets the game to not be paused
     this.timer = 15;//sets the timer to 60 seconds
   }
 
@@ -122,6 +124,7 @@ class Player extends GameObject {
         this.isPaused = true;
         console.log('You lose!');
         document.getElementById('game-over-screen').style.display = 'block';
+        this.GamerOverSFX.play();//plays the game over sound effect
       }
 
       if(FinishGame)//if the player has finished the game
