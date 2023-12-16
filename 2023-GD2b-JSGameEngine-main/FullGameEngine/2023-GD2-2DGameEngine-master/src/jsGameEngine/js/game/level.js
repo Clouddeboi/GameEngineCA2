@@ -29,13 +29,13 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     /*
-    FORMAT: new Platform(x, y, width, height, color, tag, BounceAmount, EndPlatform, Slippery, fallLeft, fallRight)
-    RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
-    Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
-    Ground+Walls: "rgb(0, 0, 126)"
-    Bounce Platform: "rgb(255, 255, 4)"
-    Slippery Platform: "rgb(6, 255, 255)"
-    End Game Platform: "rgb(4, 126, 0)"
+      FORMAT: new Platform(x, y, width, height, color, tag, BounceAmount, EndPlatform, Slippery, fallLeft, fallRight)
+      RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
+      Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
+      Ground+Walls: "rgb(0, 0, 126)"
+      Bounce Platform: "rgb(255, 255, 4)"
+      Slippery Platform: "rgb(6, 255, 255)"
+      End Game Platform: "rgb(4, 126, 0)"
      */
     const platforms = [
       //Floor and Walls

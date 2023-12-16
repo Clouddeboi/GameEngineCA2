@@ -104,6 +104,12 @@ class Player extends GameObject {
       //   this.resetPlayerState();
       // }
 
+      /*
+        Co-pilot helped me with this code
+        it showed me how to make a game over screen
+        i then coded a win screen myself
+      */
+
       // Create game over screen
       let gameOverScreen = document.createElement('div');//creates a div element
       gameOverScreen.id = 'game-over-screen';//sets the id of the div element to game-over-screen
@@ -238,5 +244,4 @@ class Player extends GameObject {
     this.resetPlayerState();
   }
 }
-
 export default Player;

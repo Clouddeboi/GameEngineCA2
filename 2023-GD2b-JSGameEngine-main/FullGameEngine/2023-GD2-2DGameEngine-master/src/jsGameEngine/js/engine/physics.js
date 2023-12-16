@@ -12,9 +12,9 @@ class Physics extends Component {
     this.velocity = velocity; // Initialize the velocity.
     this.acceleration = acceleration; // Initialize the acceleration.
     this.gravity = gravity; // Initialize the gravity.
-    this.JumpPadSFX = AudioFiles.jumpPad;
-    this.SlipperySFX = AudioFiles.Slippery;
-    this.FinishGameSFX = AudioFiles.FinishGame;
+    this.JumpPadSFX = AudioFiles.jumpPad;//adds the jump pad sound effect
+    this.SlipperySFX = AudioFiles.Slippery;// adds the slippery surface sound effect
+    this.FinishGameSFX = AudioFiles.FinishGame;// adds the finish game sound effect
   }
 
   // The update method handles how the component's state changes over time.
@@ -26,7 +26,13 @@ class Physics extends Component {
     const platforms = this.gameObject.game.gameObjects.filter((obj) => obj instanceof Platform);
 
     this.FinishGame = false;//set finish game variable to false
-  
+    
+    /*
+      Co-pilot helped me with the collision detection
+      and i coded the collision detection for specific platforms
+      (Bouncy, Slippery, Finish Game)
+      i added all the sfx aswell
+    */
     //set grounded variable to false
     this.Grounded = false;
     for(let i=0; i<Math.abs(this.velocity.y); i++)
@@ -54,7 +60,7 @@ class Physics extends Component {
               this.FinishGame = true;//sets the finish game variable to true
             }
             // Add bounce effect
-            if(obj.BounceAmount > 0)
+            if(obj.BounceAmount > 0)//if the platform has a bounce amount over 0
             {
               this.velocity.y = -obj.BounceAmount;
               //console.log("Bounce");

@@ -52,6 +52,7 @@ canvas {
 /*
   Css Animation for light shaking Effect When winning the game 
   Changes the position of the element by 1px
+  Co-pilot helped me with this code
 */
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -75,7 +76,10 @@ canvas {
   to { opacity: 1; }
 }
 
-/*Defining this class in the css*/
+/*
+  Defining this class in the css
+  Co-pilot helped me with this code
+*/
 .shake {
   animation: shake 5s; /* Adjust duration of Shake */
   animation-iteration-count: infinite;
