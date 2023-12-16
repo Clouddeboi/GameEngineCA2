@@ -17,17 +17,12 @@ class PlayerUI extends GameObject {
   // The update method is called every frame.
   update(deltaTime) {
 
-    this.timer -= deltaTime;//decreases the timer by the amount of time that has passed
+    //this.timer -= deltaTime;//decreases the timer by the amount of time that has passed
     // Find the player object in the game's gameObjects array.
     const player = this.game.gameObjects.find((obj) => obj instanceof Player);
 
     // Update the text of the UI component to reflect the player's current lives and score and timer.
-    this.uiComponent.setText(`Lives: ${player.lives}       Score: ${player.score}      Timer: ${Math.max(0, Math.floor(this.timer))}s`);
-  
-    if(this.timer <= 0)//if the timer is less than or equal to 0
-    {
-      player.lives = 0;//set the players lives to 0
-    }
+    this.uiComponent.setText(`Lives: ${player.lives}       Score: ${player.score}      Timer: ${Math.max(0, Math.floor(player.timer))}s`);
   }
 }
 

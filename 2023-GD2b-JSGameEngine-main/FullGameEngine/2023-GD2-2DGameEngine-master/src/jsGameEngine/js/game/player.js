@@ -36,12 +36,15 @@ class Player extends GameObject {
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
     this.CollectbleSFX = AudioFiles.Collect;
     this.isPaused = false;
+    this.timer = 5;//sets the timer to 60 seconds
   }
 
   // The update function runs every frame and contains game logic
   update(deltaTime) {
     if(!this.isPaused)//if the game is not paused
     {
+
+      this.timer -= deltaTime;//decreases the timer by the amount of time that has passed
       const physics = this.getComponent(Physics); // Get physics component
       const input = this.getComponent(Input); // Get input componentS
 
@@ -125,13 +128,6 @@ class Player extends GameObject {
         document.getElementById('win-screen').style.display = 'block';
       }
 
-      // Check if player has collected all collectibles
-      // if (this.score >= 300) {
-      //   this.isPaused = true;
-      //   console.log('You win!');
-      //   document.getElementById('Win-screen').style.display = 'block';
-      // }
-
       super.update(deltaTime);
     }
   }
@@ -205,6 +201,7 @@ class Player extends GameObject {
   collect(collectible) {
     // Handle collectible pickup
     this.score += collectible.value;
+    this.timer += 10;
     console.log(`Score: ${this.score}`);
     this.emitCollectParticles(collectible);
   }
