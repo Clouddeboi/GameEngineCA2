@@ -34,6 +34,7 @@ class Player extends GameObject {
     this.isGamepadJump = false;
     this.PlayerSpeed = 5;//helps us manage players speed better
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
+    this.CollectbleSFX = AudioFiles.Collect;
     this.isPaused = false;
   }
 
@@ -71,10 +72,13 @@ class Player extends GameObject {
 
       // Handle collisions with collectibles
       const collectibles = this.game.gameObjects.filter((obj) => obj instanceof Collectible);
-      for (const collectible of collectibles) {
-        if (physics.isColliding(collectible.getComponent(Physics))) {
+      for (const collectible of collectibles) 
+      {
+        if (physics.isColliding(collectible.getComponent(Physics))) 
+        {
           this.collect(collectible);
           this.game.removeGameObject(collectible);
+          this.CollectbleSFX.play();
         }
       }
     
@@ -93,15 +97,15 @@ class Player extends GameObject {
       }
 
       // Create game over screen
-      let gameOverScreen = document.createElement('div');
-      gameOverScreen.id = 'game-over-screen';
-      gameOverScreen.style.display = 'none';
+      let gameOverScreen = document.createElement('div');//creates a div element
+      gameOverScreen.id = 'game-over-screen';//sets the id of the div element to game-over-screen
+      gameOverScreen.style.display = 'none';//sets the display of the div element to none
       gameOverScreen.innerHTML = '<h1>Game Over</h1><button onclick="location.reload()">Play Again</button>';
-      document.body.appendChild(gameOverScreen);
+      document.body.appendChild(gameOverScreen);//adds the div element to the body of the html
 
       // Create win screen
       let winScreen = document.createElement('div');
-      winScreen.id = 'win-screen';
+      winScreen.id = 'win-screen';//sets the id of the div element to win-screen
       winScreen.style.display = 'none';
       winScreen.innerHTML = '<h1>You Win!</h1><button onclick="location.reload()">Play Again</button>';
       document.body.appendChild(winScreen);
@@ -130,7 +134,7 @@ class Player extends GameObject {
 
       super.update(deltaTime);
     }
-    }
+  }
 
     handleGamepadInput(input){
       const gamepad = input.getGamepad(); // Get the gamepad input

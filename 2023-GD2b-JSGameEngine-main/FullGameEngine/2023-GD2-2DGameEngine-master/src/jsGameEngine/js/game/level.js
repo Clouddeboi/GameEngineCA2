@@ -58,7 +58,7 @@ class Level extends Game {
       new Platform(1200, 0, 500, 20, "rgb(6, 255, 255)", "platform", 0, false, true, true),
 
       //Finish Game Platform
-      new Platform(600, 780, 300, 20, "rgb(4, 126, 0)", "platform", 0, true, false, false),
+      new Platform(600, -1500, 300, 20, "rgb(4, 126, 0)", "platform", 0, true, false, false),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);

@@ -14,6 +14,7 @@ class Physics extends Component {
     this.gravity = gravity; // Initialize the gravity.
     this.JumpPadSFX = AudioFiles.jumpPad;
     this.SlipperySFX = AudioFiles.Slippery;
+    this.FinishGameSFX = AudioFiles.FinishGame;
   }
 
   // The update method handles how the component's state changes over time.
@@ -78,6 +79,10 @@ class Physics extends Component {
           if(obj.Slippery)
           {
             this.SlipperySFX.play();//plays the slippery surface sound effect
+          }
+          if(obj.EndPlatform)
+          {
+            this.FinishGameSFX.play();//plays the finish game sound effect
           }
         }
       }
