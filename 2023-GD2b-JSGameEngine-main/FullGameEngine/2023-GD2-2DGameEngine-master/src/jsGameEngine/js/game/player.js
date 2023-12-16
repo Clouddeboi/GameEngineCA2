@@ -36,7 +36,7 @@ class Player extends GameObject {
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
     this.CollectbleSFX = AudioFiles.Collect;
     this.isPaused = false;
-    this.timer = 5;//sets the timer to 60 seconds
+    this.timer = 15;//sets the timer to 60 seconds
   }
 
   // The update function runs every frame and contains game logic
@@ -45,6 +45,7 @@ class Player extends GameObject {
     {
 
       this.timer -= deltaTime;//decreases the timer by the amount of time that has passed
+
       const physics = this.getComponent(Physics); // Get physics component
       const input = this.getComponent(Input); // Get input componentS
 
@@ -95,9 +96,9 @@ class Player extends GameObject {
       
     
       // Check if player has fallen off the bottom of the screen
-      if (this.y > this.game.canvas.height) {
-        this.resetPlayerState();
-      }
+      // if (this.y > this.game.canvas.height) {
+      //   this.resetPlayerState();
+      // }
 
       // Create game over screen
       let gameOverScreen = document.createElement('div');//creates a div element
@@ -126,6 +127,7 @@ class Player extends GameObject {
         this.isPaused = true;
         console.log('You Win!');
         document.getElementById('win-screen').style.display = 'block';
+        document.getElementById('win-screen').classList.add('shake');
       }
 
       super.update(deltaTime);
