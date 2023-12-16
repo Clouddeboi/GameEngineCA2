@@ -9,6 +9,7 @@ import Enemy from './enemy.js';
 import Platform from './platform.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
+import playerUI from './playerUI.js';
 
 // Defining a class Player that extends GameObject
 class Player extends GameObject {
@@ -40,114 +41,115 @@ class Player extends GameObject {
   update(deltaTime) {
     if(!this.isPaused)//if the game is not paused
     {
-    const physics = this.getComponent(Physics); // Get physics component
-    const input = this.getComponent(Input); // Get input component
+      const physics = this.getComponent(Physics); // Get physics component
+      const input = this.getComponent(Input); // Get input componentS
 
-    this.handleGamepadInput(input);
-    
-    // Handle player movement
-    if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
-      physics.velocity.x = this.PlayerSpeed;
-      this.direction = -1;
-    } else if (!this.isGamepadMovement && input.isKeyDown('ArrowLeft')) {
-      physics.velocity.x = -this.PlayerSpeed;
-      this.direction = 1;
-    } else if (!this.isGamepadMovement) {
-      physics.velocity.x = 0;
-    }
-
-    // Handle player jumping
-    if (!this.isGamepadJump && input.isKeyDown('ArrowUp')) {
-      this.startJump();
-      this.JumpSFX.play();//plays the jump sound effect
-    }
-
-    if (this.isJumping) {
-      this.updateJump(deltaTime);
-    }
-
-    // Handle collisions with collectibles
-    const collectibles = this.game.gameObjects.filter((obj) => obj instanceof Collectible);
-    for (const collectible of collectibles) {
-      if (physics.isColliding(collectible.getComponent(Physics))) {
-        this.collect(collectible);
-        this.game.removeGameObject(collectible);
-      }
-    }
-  
-    // Handle collisions with enemies
-    const enemies = this.game.gameObjects.filter((obj) => obj instanceof Enemy);
-    for (const enemy of enemies) {
-      if (physics.isColliding(enemy.getComponent(Physics))) {
-        this.collidedWithEnemy();
-      }
-    }
-    
-  
-    // Check if player has fallen off the bottom of the screen
-    if (this.y > this.game.canvas.height) {
-      this.resetPlayerState();
-    }
-
-    // Create game over screen
-    let gameOverScreen = document.createElement('div');
-    gameOverScreen.id = 'game-over-screen';
-    gameOverScreen.style.display = 'none';
-    gameOverScreen.innerHTML = '<h1>Game Over</h1><button onclick="location.reload()">Play Again</button>';
-    document.body.appendChild(gameOverScreen);
-
-    // Check if player has no lives left
-    if (this.lives == 0) 
-    {
-      this.isPaused = true;
-      console.log('You lose!');
-      document.getElementById('game-over-screen').style.display = 'block';
-    }
-
-    // Check if player has collected all collectibles
-    if (this.score >= 300) {
-      console.log('You win!');
-      location.reload();
-    }
-
-    super.update(deltaTime);
-  }
-  }
-
-  handleGamepadInput(input){
-    const gamepad = input.getGamepad(); // Get the gamepad input
-    const physics = this.getComponent(Physics); // Get physics component
-    if (gamepad) {
-      // Reset the gamepad flags
-      this.isGamepadMovement = false;
-      this.isGamepadJump = false;
-
-      // Handle movement
-      const horizontalAxis = gamepad.axes[0];
-      // Move right
-      if (horizontalAxis > 0.1) {
-        this.isGamepadMovement = true;
-        physics.velocity.x = 100;
+      this.handleGamepadInput(input);
+      
+      // Handle player movement
+      if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
+        physics.velocity.x = this.PlayerSpeed;
         this.direction = -1;
-      } 
-      // Move left
-      else if (horizontalAxis < -0.1) {
-        this.isGamepadMovement = true;
-        physics.velocity.x = -100;
+      } else if (!this.isGamepadMovement && input.isKeyDown('ArrowLeft')) {
+        physics.velocity.x = -this.PlayerSpeed;
         this.direction = 1;
-      } 
-      // Stop
-      else {
+      } else if (!this.isGamepadMovement) {
         physics.velocity.x = 0;
       }
-      
-      // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
-      if (input.isGamepadButtonDown(0)) {
-        this.isGamepadJump = true;
-        console.log(this.getComponent(Physics).Grounded);
+
+      // Handle player jumping
+      if (!this.isGamepadJump && input.isKeyDown('ArrowUp')) {
         this.startJump();
+        this.JumpSFX.play();//plays the jump sound effect
       }
+
+      if (this.isJumping) {
+        this.updateJump(deltaTime);
+      }
+
+      // Handle collisions with collectibles
+      const collectibles = this.game.gameObjects.filter((obj) => obj instanceof Collectible);
+      for (const collectible of collectibles) {
+        if (physics.isColliding(collectible.getComponent(Physics))) {
+          this.collect(collectible);
+          this.game.removeGameObject(collectible);
+        }
+      }
+    
+      // Handle collisions with enemies
+      const enemies = this.game.gameObjects.filter((obj) => obj instanceof Enemy);
+      for (const enemy of enemies) {
+        if (physics.isColliding(enemy.getComponent(Physics))) {
+          this.collidedWithEnemy();
+        }
+      }
+      
+    
+      // Check if player has fallen off the bottom of the screen
+      if (this.y > this.game.canvas.height) {
+        this.resetPlayerState();
+      }
+
+      // Create game over screen
+      let gameOverScreen = document.createElement('div');
+      gameOverScreen.id = 'game-over-screen';
+      gameOverScreen.style.display = 'none';
+      gameOverScreen.innerHTML = '<h1>Game Over</h1><button onclick="location.reload()">Play Again</button>';
+      document.body.appendChild(gameOverScreen);
+
+      // Check if player has no lives left
+      if (this.lives == 0 || this.timer <= 0) 
+      {
+        this.isPaused = true;
+        console.log('You lose!');
+        document.getElementById('game-over-screen').style.display = 'block';
+      }
+
+      // Check if player has collected all collectibles
+      // if (this.score >= 300) {
+      //   this.isPaused = true;
+      //   console.log('You win!');
+      //   document.getElementById('Win-screen').style.display = 'block';
+      // }
+
+      super.update(deltaTime);
     }
+    }
+
+    handleGamepadInput(input){
+      const gamepad = input.getGamepad(); // Get the gamepad input
+      const physics = this.getComponent(Physics); // Get physics component
+      if (gamepad) {
+        // Reset the gamepad flags
+        this.isGamepadMovement = false;
+        this.isGamepadJump = false;
+
+        // Handle movement
+        const horizontalAxis = gamepad.axes[0];
+        // Move right
+        if (horizontalAxis > 0.1) {
+          this.isGamepadMovement = true;
+          physics.velocity.x = 100;
+          this.direction = -1;
+        } 
+        // Move left
+        else if (horizontalAxis < -0.1) {
+          this.isGamepadMovement = true;
+          physics.velocity.x = -100;
+          this.direction = 1;
+        } 
+        // Stop
+        else {
+          physics.velocity.x = 0;
+        }
+        
+        // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
+        if (input.isGamepadButtonDown(0)) {
+          this.isGamepadJump = true;
+          console.log(this.getComponent(Physics).Grounded);
+          this.startJump();
+        }
+      }
   }
 
   startJump() {

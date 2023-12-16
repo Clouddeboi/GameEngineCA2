@@ -23,6 +23,11 @@ class PlayerUI extends GameObject {
 
     // Update the text of the UI component to reflect the player's current lives and score and timer.
     this.uiComponent.setText(`Lives: ${player.lives}       Score: ${player.score}      Timer: ${Math.max(0, Math.floor(this.timer))}s`);
+  
+    if(this.timer <= 0)//if the timer is less than or equal to 0
+    {
+      player.lives = 0;//set the players lives to 0
+    }
   }
 }
 
