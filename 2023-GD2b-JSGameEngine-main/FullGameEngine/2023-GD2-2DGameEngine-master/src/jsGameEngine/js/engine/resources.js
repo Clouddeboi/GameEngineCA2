@@ -11,6 +11,7 @@ const AudioFiles = {
   Slippery: new Audio(), // The file path of the slippery surface sound.
   FinishGame: new Audio(), // The file path of the finish game sound.
   Collect: new Audio(), // The file path of the collect sound.
+  GameOver: new Audio(), // The file path of the game over sound.
 };
 
 // Set the source of the jump sound.
@@ -23,6 +24,8 @@ AudioFiles.Slippery.src = './resources/Audio/SlipperySurface.mp3'; // Update the
 AudioFiles.FinishGame.src = './resources/Audio/Victory.mp3'; // Update the audio file path
 // Set the source of the collect sound.
 AudioFiles.Collect.src = './resources/Audio/Collect.mp3'; // Update the audio file path
+// Set the source of the game over sound.
+AudioFiles.GameOver.src = './resources/Audio/GameOver.mp3'; // Update the audio file path
 // Set the source of the player image.
 Images.player.src = './resources/images/player/player.png'; // Update the image path
 

@@ -33,8 +33,10 @@ class Player extends GameObject {
     this.isGamepadMovement = false;
     this.isGamepadJump = false;
     this.PlayerSpeed = 5;//helps us manage players speed better
+
     this.JumpSFX = AudioFiles.jump;//adds the jump sound effect
     this.CollectbleSFX = AudioFiles.Collect;
+    
     this.isPaused = false;
     this.timer = 15;//sets the timer to 60 seconds
   }
@@ -115,7 +117,7 @@ class Player extends GameObject {
       document.body.appendChild(winScreen);
 
       // Check if player has no lives left
-      if (this.lives == 0 || this.timer <= 0) 
+      if (this.timer <= 0) 
       {
         this.isPaused = true;
         console.log('You lose!');
@@ -203,7 +205,7 @@ class Player extends GameObject {
   collect(collectible) {
     // Handle collectible pickup
     this.score += collectible.value;
-    this.timer += 10;
+    this.timer += 3;
     console.log(`Score: ${this.score}`);
     this.emitCollectParticles(collectible);
   }

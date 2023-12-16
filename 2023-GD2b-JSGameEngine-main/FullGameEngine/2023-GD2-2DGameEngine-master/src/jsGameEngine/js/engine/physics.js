@@ -57,7 +57,7 @@ class Physics extends Component {
             if(obj.BounceAmount > 0)
             {
               this.velocity.y = -obj.BounceAmount;
-              console.log("Bounce");
+              //console.log("Bounce");
             }
 
             if(obj.Slippery)//if the platform is slippery
