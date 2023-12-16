@@ -29,12 +29,13 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     /*
-    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0, fallLeft = false, fallRight = false)
+    FORMAT: new Platform(x, y, width, height, color = 'white', tag = "platform", BounceAmount = 0, fallLeft = false, fallRight = false, FinishGame = false)
     RGB Colour wheel: https://www.colorspire.com/rgb-color-wheel/
     Colour Pallete Used: https://lospec.com/palette-list/microsoft-windows
     Ground+Walls: "rgb(0, 0, 126)"
     Bounce Platform: "rgb(255, 255, 4)"
     Slippery Platform: "rgb(6, 255, 255)"
+    End Game Platform: "rgb(4, 126, 0)"
      */
     const platforms = [
       //Floor and Walls
@@ -50,13 +51,14 @@ class Level extends Game {
       new Platform(900, -550, 200, 20, "rgb(0, 0, 126)", "platform", 0, false),
 
       //Jumping Platforms
-      new Platform(300, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8),
-      new Platform(1900, -50, 80, 20, "rgb(255, 255, 4)", "platform", 8),
+      new Platform(300, 780, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
+      new Platform(1900, -50, 80, 20, "rgb(255, 255, 4)", "platform", 8, false),
 
       //Slippy Platforms
-      new Platform(1200, 0, 500, 20, "rgb(6, 255, 255)", "platform", 0, true, true, false),
+      new Platform(1200, 0, 500, 20, "rgb(6, 255, 255)", "platform", 0, false, true, true),
 
-
+      //Finish Game Platform
+      new Platform(600, 780, 300, 20, "rgb(4, 126, 0)", "platform", 0, true, false, false),
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);
@@ -66,10 +68,10 @@ class Level extends Game {
     this.addGameObject(new PlayerUI(10, 10));
 
     //Create enemies and add them to the game
-    this.addGameObject(new Enemy(50, this.canvas.height - 90));
-    //this.addGameObject(new Enemy(platformWidth + gap + 50, this.canvas.height - 90));
-    this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 90));
-    //this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 10));
+    // this.addGameObject(new Enemy(50, this.canvas.height - 90));
+    // //this.addGameObject(new Enemy(platformWidth + gap + 50, this.canvas.height - 90));
+    // this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 90));
+    // //this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 10));
 
     // Create collectibles and add them to the game
     this.addGameObject(new Collectible(650, this.canvas.height - 100, 20, 20));

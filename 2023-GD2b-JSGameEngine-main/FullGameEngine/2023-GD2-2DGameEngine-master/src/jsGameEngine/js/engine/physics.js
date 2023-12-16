@@ -23,6 +23,8 @@ class Physics extends Component {
     this.velocity.y += (this.acceleration.y + this.gravity.y) * deltaTime;
   
     const platforms = this.gameObject.game.gameObjects.filter((obj) => obj instanceof Platform);
+
+    this.FinishGame = false;//set finish game variable to false
   
     //set grounded variable to false
     this.Grounded = false;
@@ -44,11 +46,17 @@ class Physics extends Component {
             this.gameObject.y -= 1;
             this.Grounded = true;
             this.velocity.y = 0;
-  
+
+            if(obj.EndPlatform)//if the platform is the finish game platform
+            {
+              console.log("You Win");//logs you win to the console
+              this.FinishGame = true;//sets the finish game variable to true
+            }
             // Add bounce effect
             if(obj.BounceAmount > 0)
             {
               this.velocity.y = -obj.BounceAmount;
+              console.log("Bounce");
             }
 
             if(obj.Slippery)//if the platform is slippery

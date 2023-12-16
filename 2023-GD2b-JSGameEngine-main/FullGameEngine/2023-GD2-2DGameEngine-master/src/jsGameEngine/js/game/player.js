@@ -44,6 +44,8 @@ class Player extends GameObject {
       const physics = this.getComponent(Physics); // Get physics component
       const input = this.getComponent(Input); // Get input componentS
 
+      const FinishGame = physics.FinishGame;//set finish game variable to false
+
       this.handleGamepadInput(input);
       
       // Handle player movement
@@ -97,12 +99,26 @@ class Player extends GameObject {
       gameOverScreen.innerHTML = '<h1>Game Over</h1><button onclick="location.reload()">Play Again</button>';
       document.body.appendChild(gameOverScreen);
 
+      // Create win screen
+      let winScreen = document.createElement('div');
+      winScreen.id = 'win-screen';
+      winScreen.style.display = 'none';
+      winScreen.innerHTML = '<h1>You Win!</h1><button onclick="location.reload()">Play Again</button>';
+      document.body.appendChild(winScreen);
+
       // Check if player has no lives left
       if (this.lives == 0 || this.timer <= 0) 
       {
         this.isPaused = true;
         console.log('You lose!');
         document.getElementById('game-over-screen').style.display = 'block';
+      }
+
+      if(FinishGame)//if the player has finished the game
+      {
+        this.isPaused = true;
+        console.log('You Win!');
+        document.getElementById('win-screen').style.display = 'block';
       }
 
       // Check if player has collected all collectibles
